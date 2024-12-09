@@ -49,48 +49,55 @@
 
     <!-- main content -->
     <div class="container mt-3">
-      <h2>List Product</h2>
+      <h2>Detail Product</h2>
       <hr />
-      <a href="/product/add" class="btn btn-primary">Add Product</a>
-      <table class="table table-bordered mt-2 text-center">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Stock</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{ range .products }}
-          <tr>
-            <td>{{ .Name }}</td>
-            <td>{{ .Category.Name }}</td>
-            <td>{{ .Stock }}</td>
-            <td>{{ .Description }}</td>
-            <td>
-              <a
-                href="/product/edit?id={{ .Id }}"
-                class="btn btn-warning text-light"
-                >Edit</a
-              >
-              <a
-                href="/product/detail?id={{.Id}}"
-                class="btn btn-info text-light"
-                >Detail</a
-              >
-              <a
-                href="/product/delete?id={{ .Id }}"
-                class="btn btn-danger text-light"
-                onclick="confirm('apakah data akan dihapus?')"
-                >Delete</a
-              >
-            </td>
-          </tr>
-          {{end}}
-        </tbody>
-      </table>
+      <!-- form add product -->
+      <div class="row d-flex justify-content-center">
+        <div class="col-4">
+          <form action="/product/add" method="post">
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input
+                type="text"
+                value="{{ .product.Name}}"
+                autocomplete="off"
+                class="form-control"
+                disabled
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Category</label>
+              <input
+                type="text"
+                value="{{ .product.Category.Name}}"
+                autocomplete="off"
+                class="form-control"
+                disabled
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Stock</label>
+              <input
+                type="number"
+                value="{{ .product.Stock}}"
+                autocomplete="off"
+                class="form-control"
+                disabled
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <textarea disabled>{{ .product.Description}}</textarea>
+            </div>
+            <div class="float-end">
+              <a href="/product" class="btn btn-secondary">Kembali</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- end form add category -->
     </div>
     <!-- end main content -->
 
